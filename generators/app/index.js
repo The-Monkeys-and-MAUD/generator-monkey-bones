@@ -152,7 +152,7 @@ module.exports = yeoman.Base.extend({
 	createJsonFiles : function () {
 
 		this.props.package_json =  {
-			"name": this.props.name.replace(' ', '-'),
+			"name": this.props.name.replace(/\s/g, '-'),
 			"description": this.props.description,	
 			
 			"version": "0.0.0",
@@ -185,7 +185,7 @@ module.exports = yeoman.Base.extend({
 				"gulp-inject": "^3.0.0",
 				"gulp-less": "^3.0.5",
 				"gulp-livereload": "^3.8.1",
-				"gulp-minify-css": "^0.3.11",
+				"gulp-clean-css": "^2.0.2",
 				"gulp-rename": "^1.2.0",
 				"gulp-sass": "^2.0.4",
 				"gulp-uglify": "1.0.1",

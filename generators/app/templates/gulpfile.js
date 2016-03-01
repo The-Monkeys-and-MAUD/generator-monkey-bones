@@ -21,7 +21,7 @@ var gulp         = require('gulp'),
     sass         = require('gulp-sass'),
     less         = require('gulp-less'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifycss    = require('gulp-minify-css'),
+    cleanCSS    = require('gulp-clean-css'),
     browserSync  = require('browser-sync'),
     watch        = require('gulp-watch'),
     batch        = require('gulp-batch'),
@@ -84,7 +84,7 @@ gulp.task('sass', function () {
         browsers: supported_browsers, 
         cascade: false
     }))
-    .pipe(minifycss({compatibility: 'ie8'}))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest( BASE_PATH + '/public/css' ))            
     .pipe(browserSync.reload({stream:true}));
 
@@ -105,7 +105,7 @@ gulp.task('less', function() {
         browsers: supported_browsers, 
         cascade: false
     }),                     
-    minifycss({compatibility: 'ie8'}),      // minify css
+    cleanCSS({compatibility: 'ie8'}),      // minify css
     gulp.dest(BASE_PATH + '/public/css') // save file
   ]);
 

@@ -13,6 +13,6 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "yeoman"
+    "yeoman", "themonkeys", "monkeys", "yeoman-generator"
   ]
 }

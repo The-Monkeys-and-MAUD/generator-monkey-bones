@@ -14,7 +14,7 @@ Install `yo`, `grunt-cli` and `bower`:
 npm install -g grunt-cli bower yo  
 ```
 
-'cd' into this project and 'npm install':
+`cd` into this project and `npm install`:
 
 ```
 cd /path/to/generator-monkey-bones && npm install

@@ -1,6 +1,6 @@
 {
   "name": "generator-monkey-bones",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The monkeys project generator.",
   "homepage": "themonkeys.com",
   "author": {
@@ -19,6 +19,9 @@
   },
   "main": "generators/index.js",
   "keywords": [
-    "yeoman", "themonkeys", "monkeys", "yeoman-generator"
+    "yeoman",
+    "themonkeys",
+    "monkeys",
+    "yeoman-generator"
   ]
 }

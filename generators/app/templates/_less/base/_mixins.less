@@ -1,0 +1,48 @@
+
+/* 
+	
+	Media query mix in
+
+
+ - - Usage Example - -
+
+	.bacon {
+
+		.responsive(450px, {
+		    float: left;
+		    margin-top: 10px;
+		});
+
+	}
+
+*/
+
+// Mixin 
+
+.mediaGreaterThan(@maxWidth; @rules) {
+    @media only screen and (max-width: @maxWidth) {
+        @rules();
+    }
+}
+
+.mediaLessThan(@maxWidth; @rules) {
+    @media only screen and (max-width: @maxWidth) {
+        @rules();
+    }
+}
+
+@mixin classicTable {
+
+    @include media($tablet) {
+        
+        display: table;
+        table-layout: fixed;
+        
+        > div {
+            display: table-cell;
+            width: 50%;
+            vertical-align: middle;
+        }
+    }
+
+}

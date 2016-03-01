@@ -1,0 +1,40 @@
+/*    
+     .-"-.            .-"-.            .-"-.           .-"-.
+   _/_-.-_\_        _/.-.-.\_        _/.-.-.\_       _/.-.-.\_
+  / __} {__ \      /|( o o )|\      ( ( o o ) )     ( ( o o ) )
+ / //  "  \\ \    | //  "  \\ |      |/  "  \|       |/  "  \|
+/ / \'---'/ \ \  / / \'---'/ \ \      \'/^\'/         \ .-. /
+\ \_/`"""`\_/ /  \ \_/`"""`\_/ /      /`\ /`\         /`"""`\
+ \           /    \           /      /  /|\  \       /       \
+
+
+The Monkeys (c) 2016 | http://themonkeys.com.au/ 
+Date: 15/1/16
+
+------------------
+
+pages.scss - main script that should be compiled
+
+------------------
+
+variables - global variables used throughout the project
+
+mixins - used to reduce code. common include functions as well as media queries functions
+
+style - default page styles and font styles 
+
+------------------
+
+*/
+
+
+@import "base/variables"; 
+@import "base/mixins";
+@import "base/style";
+
+@import "global/generic";
+@import "global/nav";
+@import "global/footer";
+
+
+@import "pages/home";

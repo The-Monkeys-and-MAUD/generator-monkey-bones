@@ -1,0 +1,47 @@
+@mixin media($breakpoint) {
+    @media only screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin media_lessthan($breakpoint) {
+    @media only screen and (max-width: ($breakpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin classicTable {
+
+    @include media($tablet) {
+        
+        display: table;
+        table-layout: fixed;
+        
+        > div {
+            display: table-cell;
+            width: 50%;
+            vertical-align: middle;
+        }
+    }
+
+}
+
+@mixin absolute_center {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translateX(-50%) translateY(-50%);
+
+}

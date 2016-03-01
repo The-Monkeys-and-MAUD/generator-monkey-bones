@@ -1,0 +1,18 @@
+{
+  "name": "generator-monkey-bones",
+  "version": "0.0.1",
+  "description": "The monkeys project generator.",
+  "homepage": "themonkeys.com",
+  "author": {
+    "name": "Lachlan Tweedie",
+    "email": "lachlant@themonkeys.com.au",
+    "url": "lachlantweedie.com"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "yeoman"
+  ]
+}

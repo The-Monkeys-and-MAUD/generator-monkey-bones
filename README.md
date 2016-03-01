@@ -14,10 +14,16 @@ Install `yo`, `grunt-cli` and `bower`:
 npm install -g grunt-cli bower yo  
 ```
 
-Link this generator to npm:
+'cd' into this project and 'npm install':
 
 ```
-cd /path/to/generator-monkey-bones && sudo npm link
+cd /path/to/generator-monkey-bones && npm install
+```
+
+Link this generator:
+
+```
+sudo npm link
 ```
 
 Run `yo monkey-bones` to create a new project:
@@ -25,3 +31,5 @@ Run `yo monkey-bones` to create a new project:
 ```
 yo monkey-bones
 ```
+
+Grunt will automatically run and watch your files after successfully scaffolding your project!

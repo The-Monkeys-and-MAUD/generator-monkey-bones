@@ -8,6 +8,7 @@
     "email": "lachlant@themonkeys.com.au",
     "url": "lachlantweedie.com"
   },
+  "repository": "TheMonkeys/generator-monkey-bones",
   "files": [
     "generators"
   ],
@@ -23,5 +24,6 @@
     "themonkeys",
     "monkeys",
     "yeoman-generator"
-  ]
+  ],
+  "license": "BSD-2-Clause"
 }

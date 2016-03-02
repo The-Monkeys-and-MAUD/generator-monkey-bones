@@ -258,6 +258,11 @@ module.exports = yeoman.Base.extend({
 		    	this.templatePath('_deployment/deploy.sh'),
 		    	this.destinationPath('deployment/deploy.sh'));
 
+	        // jshint
+	        this.fs.copy(
+		    	this.templatePath('.jshintrc'),
+		    	this.destinationPath('.jshintrc'));
+
 	        this.fs.copy(
 		    	this.templatePath('.gitignore'),
 		    	this.destinationPath('.gitignore'));

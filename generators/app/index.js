@@ -173,19 +173,23 @@ module.exports = yeoman.Base.extend({
 			"devDependencies": {
 				"browser-sync": "^1.6.2",
 				"gulp": "^3.8.9",
-				"gulp-ng-annotate": "^2.0.0",
 				"gulp-autoprefixer": "^1.0.1",
 				"gulp-batch": "^1.0.5",
-				"gulp-changed" : "^1.3.0",
+				"gulp-changed": "^1.3.0",
+				"gulp-clean-css": "^2.0.2",
 				"gulp-concat": "2.4.2",
 				"gulp-inject": "^3.0.0",
+				"gulp-jshint": "^2.0.0",
 				"gulp-less": "^3.0.5",
-				"gulp-livereload": "^3.8.1",
-				"gulp-clean-css": "^2.0.2",
+				"gulp-ng-annotate": "^2.0.0",
+				"gulp-notify": "^2.2.0",
+				"gulp-plumber": "^1.1.0",
 				"gulp-rename": "^1.2.0",
 				"gulp-sass": "^2.0.4",
 				"gulp-uglify": "1.0.1",
 				"gulp-watch": "^4.3.5",
+				"jshint": "^2.9.1",
+				"jshint-stylish": "^2.1.0",
 				"less": "^2.5.3",
 				"stream-combiner2": "^1.1.1"
 			}
@@ -353,6 +357,7 @@ module.exports = yeoman.Base.extend({
 			console.log(yosay(chalk.cyan('Monkey Bones project ready! Like our stuff? Visit: ') + ' ' + chalk.grey('http://themonkeys.com.au ') + ' '  + chalk.yellow('Starting Gulp tasks now so you can swing right in. \n')  ) );
 
 	  		this.spawnCommand('gulp', ['default']);	      
+	  		this.spawnCommand('open', ['.', '-a', 'Sublime Text 2']);	      
 
 	    }.bind(this) 
 	  });

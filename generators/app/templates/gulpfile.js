@@ -11,7 +11,7 @@
 The Monkeys (c) 2016 | http://themonkeys.com.au/ 
 Date: 15/1/16
 
-@author <%= author %>, <%= email %>
+@author Lachlan Tweedie, lachlant@themonkeys.com.au
 
 */
 
@@ -27,18 +27,17 @@ var gulp         = require('gulp'),
     batch        = require('gulp-batch'),
     path         = require('path'),
     inject       = require('gulp-inject'),
-    changed       = require('gulp-changed'),
-    ngAnnotate    = require('gulp-ng-annotate'); 
-
-var livereload = require('gulp-livereload');
-var combiner = require('stream-combiner2');
+    changed      = require('gulp-changed'),
+    notify        = require('gulp-notify'),
+    plumber = require('gulp-plumber'),
+    jshint        = require('gulp-jshint'),
+    ngAnnotate    = require('gulp-ng-annotate') 
+    combiner = require('stream-combiner2');
 
 
 var PORT = process.env.PORT || 3000;
 var PUBLIC_DIR = path.join('build');
-
 var combine = combiner.obj;
-
 var supported_browsers = ['last 2 versions', 'ie >= 9', 'Opera >= 30', 
                     'Chrome >= 40', 'Firefox >= 35', 'Safari >= 6', 
                     'Android >= 4' , '> 80%']
@@ -53,21 +52,11 @@ FILE_LIST_JS =  [   BASE_PATH + '/js/vendor/jquery-1.11.1.min.js',
                     BASE_PATH + '/js/vendor/tweenmax.js' 
                 ];
 
-
-
 // boostrap check
 
-if(<%= hasBootstrap %>){
+if(false){
   FILE_LIST_JS.push(BASE_PATH + '/public/libs/bootstrap/bootstrap.min.js')
 }
-
-
-
-/* ------------------------------
-  
-  Style compilers
-
------------------------------- */ 
 
 
 /*
@@ -121,6 +110,25 @@ gulp.task('less', function() {
 
 /*
 
+  JS Linting to prevent crashes.
+
+*/
+
+gulp.task('lint', function() {
+    gulp.src(BASE_PATH + "/js/*.js")
+        .pipe(plumber({
+            errorHandler: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('jshint-stylish'))
+        
+});
+
+/*
+
   Javascript
 
 */
@@ -133,33 +141,39 @@ gulp.task('vendorJs', function () {
 });
 
 gulp.task('js', function () {
-    return gulp.src(BASE_PATH + "/js/*.js")  
+
+    var onError = function(err) {
+
+        var e = err;
+
+        e.lineError = err.message.split("\n")[1];
+        e.file = err.message.split(":")[0];
+
+        notify.onError({
+                    title:    "Gulp",
+                    subtitle: "Error!",
+                    message: "<%= error.file %>" + ": " + "<%= error.lineError %>",
+                    sound:    "Beep"
+                })(e);
+
+
+        console.log(" ");
+        this.emit('end');
+    };
+
+    return gulp.src(BASE_PATH + "/js/*.js")
+      .pipe(plumber({errorHandler: onError}))
       .pipe(changed(BASE_PATH + '/public/js'))
       .pipe(ngAnnotate())
       .pipe(uglify())  
       .pipe(gulp.dest(BASE_PATH + '/public/js'));
 });
 
-
-
-gulp.task('indexAddSrcs', function () {
-  var target = gulp.src('./build/index.html');
-  var sources = gulp.src( ['build/js/vendor/*.js','build/css/vendor/*.css'] , {read: false} );
-  return target.pipe(inject(sources))
-    .pipe(gulp.dest('./build'));
-
-});
-
-
-
 gulp.task('watch', function() {
   
-  // livereload.listen();
-
-  gulp.watch('build/**/*.js', ['js', 'bs-reload']);
+  gulp.watch('build/**/*.js', ['lint', 'js', 'bs-reload']);
   gulp.watch('build/**/*.html', ['bs-reload']);
-  gulp.watch('build/**/*.<%= stylingExt %>', ['<%= styling %>']);
-
+  gulp.watch('build/**/*.scss', ['sass']);
 
 });
 
@@ -168,17 +182,13 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('server', function() {
-  // server.listen(PORT || 3000, function() {
-  //   console.log('Server listening on port', PORT);
-  // });
   browserSync({
     server: {
       baseDir: './build/public/',
       index: 'index.html'
     }
   });
-
 });
 
-gulp.task('default', ['<%= styling %>', 'vendorJs', 'js', 'watch', 'server']);
-gulp.task('build', ['<%= styling %>', 'js']);
+gulp.task('default', ['sass', 'vendorJs', 'js', 'watch', 'server']);
+gulp.task('build', ['sass', 'js']);

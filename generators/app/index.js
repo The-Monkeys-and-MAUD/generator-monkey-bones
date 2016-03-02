@@ -22,8 +22,6 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var mkdirp = require('mkdirp');
 
-
-
 module.exports = yeoman.Base.extend({
 
 	// Configurations will be loaded here.
@@ -133,12 +131,10 @@ module.exports = yeoman.Base.extend({
 
 			}], function(answers){
 
-				this.props.gitHubRepo = answers.gitStage
-
+				this.props.gitHubRepo = answers.gitStage;
 				this.props.gitStage = getGitURL(answers.gitStage);
 				this.props.stagingLink = getStagingURL(answers.stagingLink);
-
-				this.props.package_json
+				this.props.package_json;
 
 				done();
 
@@ -280,8 +276,7 @@ module.exports = yeoman.Base.extend({
 	            this.destinationPath('README.md'), {
 	                name: this.props.name,
 	                description: this.props.description,
-	                architecture: this.props.architecture,
-	                
+	                architecture: this.props.architecture
 	            }
 	        );
 

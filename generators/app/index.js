@@ -239,7 +239,8 @@ module.exports = yeoman.Base.extend({
 	               hasBootstrap: this.props.hasBootstrap,
 	               stylingExt : ext,
 	               author: this.props.author,
-	               email: this.props.email
+	               email: this.props.email,
+	               insertNotifyFormat: "<%= error.file %>" + ": " + "<%= error.lineError %>"
 	            }
 	        );
 

@@ -152,7 +152,7 @@ gulp.task('js', function () {
         notify.onError({
                     title:    "Gulp",
                     subtitle: "Error!",
-                    message: "<%= error.file %>" + ": " + "<%= error.lineError %>",
+                    message: "<%= insertNotifyFormat %>",
                     sound:    "Beep"
                 })(e);
 
